@@ -1,0 +1,82 @@
+﻿[36mvite v5.4.19 [32mbuilding for production...[36m[39m
+transforming...
+node.exe : Browserslist: browsers data 
+(caniuse-lite) is 10 months old. Please 
+run:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecif 
+   ied: (Browserslist: b...ld. Please   
+  run::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCom 
+   mandError
+ 
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https:
+//github.com/browserslist/update-db#read
+me
+[33m[vite:css] @import must precede 
+all other statements (besides @charset 
+or empty @layer)
+3  |  @tailwind utilities;
+4  |  
+5  |  @import url('https://fonts.googlea
+pis.com/css2?family=Inter:wght@300;400;5
+00;600;700;800&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6  |  
+7  |  @layer base {[39m
+[32m✓[39m 72 modules transformed.
+[31mx[39m Build failed in 1.08s
+[31merror during build:
+[31m[vite:esbuild] Transform failed 
+with 1 error:
+C:/Users/Pc/Downloads/resume-rocket-main
+/resume-rocket-main/src/components/Custo
+mizationPanel.tsx:606:16: ERROR: 
+Expected ")" but found "}"[31m
+file: [36mC:/Users/Pc/Downloads/resume-
+rocket-main/resume-rocket-main/src/compo
+nents/CustomizationPanel.tsx:606:16[31m
+[33m
+[33mExpected ")" but found "}"[33m
+604|                    )}
+605|                  </button>
+606|                ))}
+   |                  ^
+607|              </div>
+608|            </Card>
+[31m
+    at failureErrorWithLog (C:\Users\Pc\
+Downloads\resume-rocket-main\resume-rock
+et-main\node_modules\esbuild\lib\main.js
+:1472:15)
+    at C:\Users\Pc\Downloads\resume-rock
+et-main\resume-rocket-main\node_modules\
+esbuild\lib\main.js:755:50
+    at responseCallbacks.<computed> (C:\
+Users\Pc\Downloads\resume-rocket-main\re
+sume-rocket-main\node_modules\esbuild\li
+b\main.js:622:9)
+    at handleIncomingPacket (C:\Users\Pc
+\Downloads\resume-rocket-main\resume-roc
+ket-main\node_modules\esbuild\lib\main.j
+s:677:12)
+    at Socket.readFromStdout (C:\Users\P
+c\Downloads\resume-rocket-main\resume-ro
+cket-main\node_modules\esbuild\lib\main.
+js:600:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk 
+(node:internal/streams/readable:559:12)
+    at readableAddChunkPushByteMode 
+(node:internal/streams/readable:510:3)
+    at Readable.push 
+(node:internal/streams/readable:390:5)
+    at Pipe.onStreamRead (node:internal/
+stream_base_commons:189:23)[39m
