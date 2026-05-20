@@ -14,10 +14,11 @@ export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (register(name, email, password)) {
-      navigate("/");
+    const success = await register(name, email, password);
+    if (success) {
+      navigate("/login");
     }
   };
 

@@ -60,11 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Registration failed');
 
-      const { token, user } = data;
-      setCurrentUser(user);
-      localStorage.setItem('token', token);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      toast.success('Registration successful. Welcome!');
+      toast.success('Registration successful. Please login.');
       return true;
     } catch (err: any) {
       toast.error(err.message || 'Error creating account');
