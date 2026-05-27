@@ -5,6 +5,9 @@ import pool from '../db.js';
 
 const router = express.Router();
 
+// Fallback secret for production if not set in environment variables
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_please_change_in_production';
+
 // Register
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
@@ -20,11 +23,11 @@ router.post('/register', async (req, res) => {
       [name, email, hashedPassword]
     );
 
-    const token = jwt.sign({ email: newUser.rows[0].email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ email: newUser.rows[0].email }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: newUser.rows[0] });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Registration error:', err);
+    res.status(500).json({ error: 'Server error: ' + (err.message || String(err)) });
   }
 });
 
@@ -42,18 +45,18 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Incorrect password' });
     }
 
-    const token = jwt.sign({ email: user.rows[0].email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ email: user.rows[0].email }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ 
       token, 
       user: { name: user.rows[0].name, email: user.rows[0].email } 
     });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Login error:', err);
+    res.status(500).json({ error: 'Server error: ' + (err.message || String(err)) });
   }
 });
 
-// Simple Reset Password (typically would involve email verification, but implementing simple reset here as requested)
+// Simple Reset Password
 router.post('/reset-password', async (req, res) => {
   const { email, newPassword } = req.body;
   try {
@@ -67,8 +70,8 @@ router.post('/reset-password', async (req, res) => {
 
     res.json({ message: 'Password updated successfully' });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Reset password error:', err);
+    res.status(500).json({ error: 'Server error: ' + (err.message || String(err)) });
   }
 });
 
